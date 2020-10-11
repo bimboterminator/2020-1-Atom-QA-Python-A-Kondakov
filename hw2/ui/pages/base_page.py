@@ -9,7 +9,8 @@ class BasePage(object):
 
     def __init__(self, driver):
         self.driver = driver
-        self.companynames = []
+
+
     def find(self, locator, timeout=None) -> WebElement:
 
         return self.wait(timeout).until(EC.presence_of_element_located(locator))

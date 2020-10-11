@@ -17,7 +17,7 @@ class LoginPage(BasePage):
         self.click(self.locators.AUTHBUTTON)
         self.wait(10)
 
-    def email_isdisplayed(self):
+    def email_isDisplayed(self):
         try:
             namewrap = self.find(self.locators.LOGINSHOW)
             return namewrap.text
