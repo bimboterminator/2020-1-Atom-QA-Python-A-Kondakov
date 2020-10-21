@@ -19,8 +19,7 @@ class CreatingCampaignLocators:
     INPUTURL = (By.XPATH, '//input[@data-gtm-id="ad_url_text"]')
     BANNER = (By.XPATH, '//div[@id="patterns_4"]')
     BANNER_URL = (By.XPATH, '//input[@placeholder="Введите адрес ссылки"]')
-    LOADIMAGE = (By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/div[2]/div[2]/div[2]/div/div[1]/div[2]'
-                           '/div/div[4]/div[6]/div/div[4]/div/div[2]/div[1]/div[2]/div/div/div/div[2]/input')
+    LOADIMAGE = (By.XPATH, '//div[contains(@class,"upload-module-wrapper") and contains(@class,"upload-module-hidden")  ]/input')
     CLEAR = (By.CLASS_NAME, 'input__clear')
     SAVEADV = (By.XPATH, '//div[contains(text(), "Сохранить объявление")]')
     NAMEINPUT = (By.CLASS_NAME, 'input__inp')

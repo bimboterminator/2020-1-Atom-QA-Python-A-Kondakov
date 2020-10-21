@@ -20,6 +20,6 @@ class LoginPage(BasePage):
     def email_isDisplayed(self):
         try:
             namewrap = self.find(self.locators.LOGINSHOW)
-            return namewrap.text
+            return True
         except TimeoutException:
-            return 'Invalid'
+            return False
