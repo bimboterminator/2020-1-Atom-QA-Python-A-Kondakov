@@ -5,7 +5,6 @@ class TestTarget:
     @pytest.mark.API
     def test_segment_creation(self, api_client):
         id = api_client.seg_create()
-        print(id)
         assert id != ''
 
     @pytest.mark.API
