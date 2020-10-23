@@ -24,7 +24,7 @@ class TargetClient:
 
         self.email = email
         self.password = password
-        self.auth()
+        self.login()
 
     def auth(self):
         url = 'https://auth-ac.my.com/auth'
@@ -55,6 +55,10 @@ class TargetClient:
         response = self.session.request('GET', location)
         return response.headers['Set-Cookie'].split(';')[0].split('=')[-1]
 
+    def login(self):
+        self.auth()
+        self.csrf_token = self.get_token()
+
     def seg_create(self):
         url = 'https://target.my.com/api/v2/remarketing/segments.json'
 
@@ -62,7 +66,7 @@ class TargetClient:
                    'Referer': 'https://target.my.com/segments/segments_list/new',
                    'Origin': 'https://target.my.com',
                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36',
-                   'X-CSRFToken': self.get_token(),
+                   'X-CSRFToken': self.csrf_token,
                    'X-Requested-With': 'XMLHttpRequest'}
         data = {
             'name': f'New segment {time.ctime()}',
@@ -75,12 +79,10 @@ class TargetClient:
 
         return self.session.request('POST', url, headers=headers, data=json.dumps(data))
 
-    def delete_segment(self):
-        response = self.seg_create()
+    def delete_segment(self, id):
 
-        id = response.json()['id']
         url = f'https://target.my.com/api/v2/remarketing/segments/{id}.json'
-        headers = {'X-CSRFToken': self.get_token(),
+        headers = {'X-CSRFToken': self.csrf_token,
                    'Referer': 'https://target.my.com/segments/segments_list'}
         response = self.session.request('DELETE', url, headers=headers)
         return response
