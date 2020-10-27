@@ -11,4 +11,4 @@ class TestTarget:
     def test_delete_segment(self, api_client):
         id_create = api_client.seg_create()
         resp_del = api_client.delete_segment(id_create)
-        assert resp_del.status_code == 204
+        assert not api_client.is_present(id_create)

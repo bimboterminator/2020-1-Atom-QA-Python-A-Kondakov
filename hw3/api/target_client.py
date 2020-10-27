@@ -90,3 +90,12 @@ class TargetClient:
                    'Referer': 'https://target.my.com/segments/segments_list'}
         response = self.session.request('DELETE', url, headers=headers)
         return response
+
+    def is_present(self, id):
+
+        url = f'https://target.my.com/segments/segments_list/{id}'
+        response = self.session.request('GET', url)
+        if response.status_code == 404:
+            return False
+        else:
+            return True
