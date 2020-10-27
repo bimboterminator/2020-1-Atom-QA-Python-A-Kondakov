@@ -93,9 +93,10 @@ class TargetClient:
 
     def is_present(self, id):
 
-        url = f'https://target.my.com/segments/segments_list/{id}'
-        response = self.session.request('GET', url)
-        if response.status_code == 404:
+        url = f'https://target.my.com/api/v2/coverage/segment.json?id={id}'
+        response = self.session.request('GET', url).json()
+
+        if response['items'][0]['status'] == 'not found':
             return False
         else:
             return True
