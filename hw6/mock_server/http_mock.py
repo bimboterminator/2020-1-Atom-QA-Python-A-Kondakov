@@ -21,19 +21,17 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length)
         trans = json.loads(post_data.decode())
-        if (trans['currency'] == 'EUR' and self.path == '/usd') or self.path != '/usd':
+        if (trans['reciever_curr'] == 'EUR' and self.path == '/usd') or self.path != '/usd':
             self.send_response(403)
-            self.wfile.write(json.dumps({'Invalid currency': trans['currency'], 'received': 'no'}).encode())
+            self.wfile.write(json.dumps({'Invalid currency': trans['reciever_curr'], 'received': 'no'}).encode())
 
-        if self.path == '/usd' and trans['currency'] == 'USD':
+        if self.path == '/usd' and trans['reciever_curr'] == 'USD':
             self.send_response(200)
             self.usd.append(trans)
-        if self.path == '/eur' and trans['currency'] == 'EUR':
+        if self.path == '/eur' and trans['reciever_curr'] == 'EUR':
             self.send_response(200)
             self.eur.append(trans)
-
         self.end_headers()
-        self.wfile.write(json.dumps({'usd': self.usd, 'eur': self.eur}).encode())
 
     def do_PUT(self):
         self._set_headers()
