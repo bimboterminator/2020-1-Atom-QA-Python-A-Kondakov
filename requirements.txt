@@ -1,3 +1,9 @@
 pytest
 pytest-xdist
-pytest-pep8
+selenium
+pymysql
+faker
+webdriver-manager
+allure-pytest
+requests
+locust
