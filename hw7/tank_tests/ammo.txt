@@ -1,0 +1,17 @@
+94
+GET /hist HTTP/1.1
+Host: 10.0.2.15:5555
+User-Agent: tank
+Accept: */*
+Connection: Close
+
+222 
+POST /send HTTP/1.1
+Host: 10.0.2.15:5555
+User-Agent: tank
+Accept: */*
+Content-Type: application/json
+Connection: keep-alive
+Content-Length: 68
+
+{"id":"0", "emitent_curr":"USD", "reciever_curr":"EUR","amount":200}

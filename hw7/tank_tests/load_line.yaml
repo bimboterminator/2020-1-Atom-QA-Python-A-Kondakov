@@ -1,0 +1,8 @@
+phantom:
+  address: 10.0.2.15:5555
+  ammofile: /var/loadtest/ammo.txt
+  load_profile:
+    load_type: rps
+    schedule: line(1, 5, 30)
+telegraf:
+  enabled: false
