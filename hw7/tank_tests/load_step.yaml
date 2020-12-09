@@ -1,0 +1,16 @@
+overload:
+  enabled: true
+  token_file: /var/loadtest/token.txt
+  package: yandextank.plugins.DataUploader
+  job_name: Kondakov_QA_step
+  job_dsc: Kondakov_QA_step
+phantom:
+  address: 10.0.2.15:5555
+  ammofile: /var/loadtest/ammo.txt
+  load_profile:
+    load_type: rps
+    schedule: step(1, 10, 5, 1m)
+console:
+  enabled: false
+telegraf:
+  enabled: false
